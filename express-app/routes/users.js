@@ -1,13 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
+const users = [];
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  const users = [
-    { id: 1, name: 'Telyatnikov Mikhail' },
-    { id: 2, name: 'Chernyshov Vsevolod' }
-  ];
   res.json({ items: users });
 });
+
+router.post('/', function(req, res, next) {
+  const newUser = req.body;
+  users.push(newUser);
+  res.status(201).json(newUser);
+})
 
 module.exports = router;
